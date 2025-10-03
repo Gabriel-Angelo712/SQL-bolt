@@ -1,0 +1,6 @@
+Lição 1 de SQL: Consultas SELECT 
+
+Para recuperar dados de um banco de dados SQL, precisamos escrever instruções SELECT, que são frequentemente chamadas coloquialmente de consultas. A instrução SELECT declara que dados estamos procurando e onde encontra-los
+
+Sintaxe:
+    SELECT <nome-da-coluna>, <nome-de-outra-coluna>, ... FROM <nome-da-tabela> (seleção de colunas específicas dentro dentro de uma tabela)
