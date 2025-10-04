@@ -1,0 +1,51 @@
+Lição 2 de SQL: Consultas com restrições (Pt. 1)
+
+Para filtrar determinados resultados, precisamos usar uma WHERE cláusula na consulta. A cláusula é aplicada a cada linha de dados, verificando valores específicos da coluna para determinar se eles devem ser incluídos nos resultados ou não.
+
+Sintaxe:
+
+ SELECT <nome-da-coluna>, <nome-da-outra-coluna>, ... FROM <nome-da-tabela> WHERE <consdição> AND/OR <outra-consdição> AND/OR …;
+
+-- TABELA VERDADE PARA OS OPERADORES AND E OR--
+
+*Operador AND:
+
+verdade AND verdade -> verdade
+verdade AND falso -> falso
+falso AND false -> falso
+
+Ex: Supondo que temos uma tabela 'users', com as colunas : nome, idade, profissao e queremos achar dentro da tabela todas os usuários que têm mais de 18 anos e são programadores, teremos:
+
+    SELECT idade, profissao FROM users WHERE idade = 18 AND profissao = 'programador';
+
+O operador AND vai avaliar em todas as linhas, a condição que está depois do WHERE, antes e depois do AND, neste caso, a condição é : 
+    idade = 18 AND profissao = 'programador';
+
+Em cada linha, será verificado se o usuário tem mais de 18 anos e se é programador, se ambas as condições forem verdadeiras, o usuário será retornado para o resultado da consulta.
+
+*Operador OR:
+
+verdade OR verdade -> verdade
+verdade OR falso -> verdade
+falso OR false -> falso
+
+Ex: Se for-mos a ver, a consulta passada só vai retornar programadores, se o usuário for do sexo feminino (programadora), não será retornado pelo simples fato de que a nossa consulta passada só retorna o usuário se a profissão for 'programador', para corrigir isso, podemos usar o OR, teremos:
+
+    SELECT idade, profissao FROM users WHERE idade = 18 AND profissao = 'programador' OR 'programadora';
+
+O processo de avaliação para a seleção dos usuários que devem ser retornados, quase não mudou, mas desta vez, ao invéz da consulta retornas apenas usuários do sexo masculino, agora também podemos visualizar usuários do sexo feminino no nosso retorno
+
+Cláusulas ou Operadores úteis
+
+    - =, !=, <, <=, >, >= (Operadores numéricos)
+
+    - BETWEEN ... AND ... (filtra os resultados que estão dentro de um intervalo)
+        Ex: SELECT * FROM users WHERE idade BETWEEN 18 AND 25 -> Retorna todos os usuários que têm idade entre 18 e 25
+
+    - NOT BETWEEN ... AND ...(Filtra resultados que não estão dentro de um intervalo)
+        Ex: SELECT * FROM users WHERE idade NOT BETWEEN 1 AND 20 -> Retorna todos os usuários que não têm idade entre 1 e 25
+
+    - IN(...) (Filtra os resultados que estão presentes em uma lista)
+        Ex: SELECT * FROM users WHERE locale IN('Luanda', 'Huambo', 'Moxico', 'Huila')
+
+    
